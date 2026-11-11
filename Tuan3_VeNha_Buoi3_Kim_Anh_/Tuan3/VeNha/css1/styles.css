@@ -1,0 +1,17 @@
+/* Bài 8a – Heroes of JavaScript and HTML */
+* { box-sizing: border-box; }
+body { margin: 0; padding: 24px 12px; background: #fff; color: #171717; font-family: Georgia, "Times New Roman", serif; }
+#root { width: 960px; max-width: 100%; margin: 0 auto; padding: 24px 30px 40px; background: #ccc; font-size: 14px; }
+.header { margin: 0 0 24px; text-align: center; font-size: 20px; line-height: 1.35; }
+.header-icon { font-family: Arial, sans-serif; font-size: 18px; }
+.description { margin: 0 0 28px; padding: 15px 28px; border: 2px solid #fff; border-radius: 12px; background: #858585; line-height: 1.45; }
+#root > .description { min-height: 62px; }
+.container { width: 100%; }
+.remark { margin: 0 0 18px; text-align: center; font-size: 13px; }
+.heroes-list { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.hero-item { position: relative; display: inline-block; width: calc(25% - 9px); min-width: 0; height: 245px; text-align: center; }
+.hero-item h2 { margin: 0 0 10px; font-size: 15px; line-height: 1.25; text-align: center; }
+.hero-item .description { position: absolute; top: 26px; left: 0; z-index: 2; width: 100%; height: 148px; overflow: hidden; margin: 0; padding: 12px 10px; border: 2px solid #fff; border-radius: 3px; background: rgba(105,105,105,.76); font-size: 13px; line-height: 1.3; text-align: justify; }
+.hero-item img { position: absolute; bottom: 0; left: 50%; width: 100%; height: 128px; transform: translateX(-50%); object-fit: cover; border: 2px solid #fff; border-radius: 13px; }
+@media(max-width:760px) { #root { padding: 20px 16px 30px; } .heroes-list { flex-wrap: wrap; } .hero-item { width: calc(50% - 8px); } }
+@media(max-width:480px) { .hero-item { width: 100%; height: 260px; } .hero-item .description { height: 145px; } }

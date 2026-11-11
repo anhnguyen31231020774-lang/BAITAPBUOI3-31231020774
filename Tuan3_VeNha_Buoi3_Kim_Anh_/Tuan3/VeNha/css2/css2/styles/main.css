@@ -1,0 +1,14 @@
+/* Bài 8b – The Bat Family */
+* { box-sizing: border-box; }
+body { margin: 0; padding: 28px 12px; background: #fff; color: #fff; font-family: Georgia, "Times New Roman", serif; }
+#root { width: 1024px; max-width: 100%; margin: 0 auto; text-align: center; }
+#site-header { display: flex; align-items: center; justify-content: center; gap: 12px; min-height: 60px; margin: 0 0 24px; padding: 8px 16px; background-color: #ccc; background-image: url("../imgs/logo.png"); background-repeat: no-repeat; background-position: center; background-size: 38px auto; color: #fff; font-size: 22px; text-shadow: 2px 2px 3px #333; }
+#site-header span { position: relative; z-index: 1; }
+.superheroes { display: flex; align-items: flex-start; justify-content: center; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.superheroes li { position: relative; display: inline-block; flex: 0 0 115px; width: 115px; height: 115px; transition: width .25s ease, flex-basis .25s ease; }
+.superheroes img { display: block; width: 100%; max-width: 100%; height: 115px; object-fit: cover; border: 2px solid #fff; border-radius: 12px; }
+.superheroes .hero-header { position: absolute; top: 8px; left: 0; z-index: 2; display: block; width: 100%; color: #fff; font-size: 13px; text-shadow: 1px 1px 2px #222; pointer-events: none; }
+.superheroes a { position: absolute; right: 0; bottom: -28px; z-index: 3; display: none; width: 100%; padding: 6px 3px; background: #666; color: #fff; font-size: 12px; text-align: center; text-decoration: none; }
+.superheroes li:hover { flex-basis: 150px; width: 150px; }
+.superheroes li:hover a { display: block; text-decoration: underline; }
+@media(max-width:680px) { .superheroes { flex-wrap: wrap; } }
