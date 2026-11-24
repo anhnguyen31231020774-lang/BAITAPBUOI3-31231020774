@@ -1,0 +1,4 @@
+/* Exercise 7.17 – CSS Filters */
+
+.filter-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.filter-grid img{width:100%;height:125px;object-fit:cover;border-radius:8px}.filter-grid figure{margin:0}.f-gray{filter:grayscale(1)}.f-blur{filter:blur(2px)}.f-sepia{filter:sepia(1)}.f-bright{filter:brightness(1.35) saturate(1.5)}
+

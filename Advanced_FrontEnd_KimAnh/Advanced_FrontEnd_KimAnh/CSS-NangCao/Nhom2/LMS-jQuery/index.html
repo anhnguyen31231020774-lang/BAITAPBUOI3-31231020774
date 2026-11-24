@@ -1,0 +1,35 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>jQuery LMS helper</title><style>
+body{margin:0;background:#f3f6fc;color:#202a3d;font:16px/1.6 Arial}.hero{background:#14213d;color:white;padding:28px 5%}.wrap{max-width:1000px;margin:auto;padding:22px 16px}.panel{background:white;padding:20px;border-radius:14px;margin:14px 0;border:1px solid #dfe6f1}.btn{padding:10px 14px;background:#315fc4;color:white;border:0;border-radius:8px;cursor:pointer}.topic{padding:13px;border:1px solid #dfe6f1;border-radius:10px;margin:10px 0}.task{padding:8px;background:#eff6ff;border-radius:7px;margin:6px 0}.none{color:#a16207;background:#fffbeb;padding:8px;border-radius:7px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#101827;color:#e2e8f0;padding:15px;border-radius:10px}
+</style></head><body><header class="hero"><h1>jQuery – Đọc dữ liệu bài tập LMS</h1><p>Đọc bài nộp thứ 5, chủ đề, bài tập và deadline từ cấu trúc trang khóa học.</p></header><main class="wrap"><p><a href="../../index.html">← Trang chủ bài tập</a></p>
+<section class="panel"><h2>1. Chạy trên trang LMS thật</h2><p>Mở trang khóa học LMS sau khi đăng nhập, mở DevTools → Console. Nếu trang đã nạp jQuery, dán đoạn mã dưới đây. Đề bài gốc yêu cầu dùng selector <code>.modtype_assign</code> và <code>.instancename</code>.</p>
+<button class="btn" id="copyCode">Copy mã jQuery</button> <span id="copyMsg"></span><pre id="code"></pre>
+<p><b>Lưu ý:</b> Selector deadline có thể khác nhau tùy giao diện Moodle/LMS. Mã in nội dung hoạt động và thông tin thời gian có trong DOM; nếu deadline không nằm trong phần tử được chọn, cần kiểm tra HTML bằng Inspect Element và bổ sung selector tương ứng.</p></section>
+<section class="panel"><h2>2. Kết quả minh họa (dữ liệu mẫu)</h2><p class="none">Dữ liệu dưới đây chỉ để minh họa giao diện, không phải dữ liệu được lấy từ lớp học thật.</p><h3>Bài tập thứ 5</h3><div id="fifth"></div><h3>Chủ đề môn học</h3><div id="topics"></div></section>
+<section class="panel"><h2>3. Giải thích cách hoạt động</h2><ol><li><code>$('.modtype_assign')</code> chọn tất cả hoạt động dạng bài tập.</li><li><code>.each()</code> duyệt từng bài tập.</li><li><code>.find('.instancename')</code> tìm tên bài tập nằm bên trong từng hoạt động.</li><li><code>.eq(4)</code> lấy phần tử thứ năm vì chỉ số mảng bắt đầu từ 0.</li><li>Để liệt kê chủ đề, cần duyệt các section khóa học; trong mỗi section kiểm tra có assignment hay không và đọc deadline nếu thông tin đó được render trong DOM.</li></ol></section></main>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script><script>
+const snippet = `// Chạy trên trang khóa học LMS sau khi đăng nhập (jQuery phải được nạp)
+const assignments = $(".modtype_assign");
+console.log("Bài nộp thứ 5:");
+assignments.eq(4).find(".instancename").each(function(){
+  console.log($(this).text().trim());
+});
+
+// Liệt kê các section/chủ đề và bài tập trong từng chủ đề
+$(".course-content .section.main, .course-content li.section").each(function(){
+  const section = $(this);
+  const topic = section.find(".sectionname, .section-title").first().text().trim() || "Chủ đề chưa có tên";
+  const tasks = section.find(".modtype_assign");
+  console.log("Chủ đề:", topic);
+  if(tasks.length === 0) console.log("  Không có bài tập");
+  tasks.each(function(){
+    const name = $(this).find(".instancename").first().text().trim();
+    const deadline = $(this).find(".activity-info, .description, .duedate, [data-region='activity-dates']").text().trim();
+    console.log("  Bài tập:", name, "| Deadline:", deadline || "Không tìm thấy deadline trong selector");
+  });
+});`;
+document.getElementById('code').textContent=snippet;
+document.getElementById('copyCode').onclick=()=>navigator.clipboard.writeText(snippet).then(()=>document.getElementById('copyMsg').textContent='Đã copy').catch(()=>document.getElementById('copyMsg').textContent='Không copy tự động được; hãy chọn mã và copy thủ công.');
+const sample=[{name:'Chủ đề 1 – Giới thiệu',tasks:[['Bài tập 1 – Làm quen LMS','28/11/2026'],['Bài tập 2 – Thảo luận','02/12/2026']]},{name:'Chủ đề 2 – HTML/CSS',tasks:[['Bài tập 3 – HTML cơ bản','05/12/2026']]},{name:'Chủ đề 3 – JavaScript',tasks:[['Bài tập 4 – JavaScript','09/12/2026'],['Bài tập 5 – DOM','12/12/2026']]},{name:'Chủ đề 4 – Tài liệu tham khảo',tasks:[]}];
+document.getElementById('fifth').textContent=sample.flatMap(s=>s.tasks).length>=5?sample.flatMap(s=>s.tasks)[4][0]:'Không có bài tập thứ 5 trong dữ liệu mẫu.';
+document.getElementById('topics').innerHTML=sample.map(s=>'<div class="topic"><b>'+s.name+'</b>'+(s.tasks.length?s.tasks.map(t=>'<div class="task">'+t[0]+' · Deadline: '+t[1]+'</div>').join(''):'<p class="none">Chủ đề này không có bài tập.</p>')+'</div>').join('');
+</script></body></html>

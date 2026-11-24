@@ -1,0 +1,4 @@
+/* Exercise 7.7 – Floating Multiple Items */
+
+.items{display:flow-root}.items div{float:left;width:30%;margin:1.5%;padding:20px 5px;text-align:center;background:#c7d2fe;border-radius:8px}@media(max-width:520px){.items div{width:47%;margin:1.5%}}
+

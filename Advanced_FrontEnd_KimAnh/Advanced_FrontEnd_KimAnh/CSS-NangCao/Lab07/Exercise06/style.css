@@ -1,0 +1,4 @@
+/* Exercise 7.6 – Floating in a Container */
+
+.float-container{background:#eff6ff;padding:10px;display:flow-root;border:1px solid #93c5fd}.tile{float:left;width:30%;margin:1.5%;padding:22px 5px;text-align:center;background:#bfdbfe;border-radius:8px}
+

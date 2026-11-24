@@ -1,0 +1,4 @@
+/* Exercise 7.16 – More Transitions */
+
+.transition-card{display:inline-block;background:#dbeafe;padding:22px;border-radius:5px;transition:background .4s ease,width .4s ease,border-radius .4s ease,transform .4s ease}.transition-card:hover{background:#fda4af;border-radius:24px;transform:rotate(2deg) scale(1.05)}
+

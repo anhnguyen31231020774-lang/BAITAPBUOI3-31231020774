@@ -1,0 +1,27 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Urban Leaf – E-commerce demo</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/xzoom/1.0.15/xzoom.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.1.2/css/star-rating.min.css">
+<style>
+body{background:#f4f6fb;color:#263248;font:16px/1.6 Arial}.hero{background:#17345d;color:white;padding:28px 5%}.wrap{max-width:1100px;margin:auto;padding:24px 15px}.product{background:white;border:1px solid #e2e8f0;border-radius:15px;padding:18px;position:relative}.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.main-image{width:100%;max-height:440px;object-fit:cover}.sale{position:absolute;top:26px;left:26px;background:#d92d45;color:white;padding:6px 10px;border-radius:7px;font-weight:bold;z-index:2}.status{position:absolute;top:26px;right:26px;background:#147d57;color:white;padding:6px 10px;border-radius:7px;font-weight:bold;z-index:2}.price{font-size:28px;color:#d92d45;font-weight:bold}.old{font-size:16px;color:#8993a4;text-decoration:line-through}.thumbs{display:flex;gap:8px;margin-top:10px}.thumbs img{width:70px;height:70px;object-fit:cover;cursor:pointer;border:2px solid transparent}.thumbs img.active{border-color:#315fc4}.thumbs img:hover{border-color:#315fc4}.rating{max-width:280px}.feature{background:white;padding:16px;border-radius:12px;margin-top:18px}.cart{margin-left:12px;font-weight:bold}@media(max-width:720px){.product-grid{grid-template-columns:1fr}.main-image{max-height:320px}}
+</style></head><body>
+<header class="hero"><div class="wrap"><h1>Urban Leaf</h1><p>Đồ trang trí tối giản – E-commerce thực hành</p></div></header>
+<main class="wrap"><p><a href="../../index.html">← Trang chủ bài tập</a></p><div class="product-grid">
+<section class="product"><span class="sale">-20%</span><span class="status">NEW · BEST SELLER</span>
+<img id="mainImage" class="xzoom main-image" src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=900" xoriginal="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1600" alt="Bình gốm trang trí màu kem trên kệ gỗ">
+<div class="thumbs"><img class="active" src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=180" data-large="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=900" alt="Góc nhìn bình gốm"><img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=180" data-large="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=900" alt="Không gian phòng khách"><img src="https://images.unsplash.com/photo-1615874694520-474822394e73?w=180" data-large="https://images.unsplash.com/photo-1615874694520-474822394e73?w=900" alt="Không gian nội thất tối giản"></div>
+</section>
+<section class="product"><span class="label label-primary">Mã sản phẩm: UL-001</span><h2>Bình gốm Minimal – Sand</h2><p class="price">399.000 ₫ <span class="old">499.000 ₫</span></p><p>Bình gốm trang trí tông màu trung tính, phù hợp bàn làm việc, kệ sách và không gian phòng khách hiện đại.</p>
+<h4>Đánh giá của khách hàng</h4><input id="rating" class="rating" value="4" data-size="sm">
+<h4>Tình trạng kho</h4><div class="progress"><div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width:72%">72% – Còn hàng</div></div><p>Còn 18/25 sản phẩm trong kho.</p>
+<button class="btn btn-primary" id="addCart">Thêm vào giỏ hàng</button><span class="cart" id="cartCount">Giỏ hàng: 0</span></section></div>
+<section class="feature"><h3>Các yêu cầu đã triển khai</h3><ul><li>xZoom: chọn ảnh thu nhỏ và phóng to ảnh sản phẩm.</li><li>Bootstrap Progress: hiển thị tỷ lệ hàng tồn.</li><li>Badge giảm giá ở góc trên trái; nhãn New/Best Seller ở góc trên phải.</li><li>Bootstrap Star Rating thay thế biểu tượng glyphicon-star.</li></ul></section></main>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/xzoom/1.0.15/xzoom.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.1.2/js/star-rating.min.js"></script>
+<script>
+$(function(){
+  if($.fn.xzoom){$('.xzoom').xzoom({zoomWidth:300,title:false,tint:'#333',Xoffset:15});}
+  if($.fn.rating){$('#rating').rating({step:1,showClear:false,showCaption:true,starCaptions:{1:'Rất tệ',2:'Tệ',3:'Bình thường',4:'Tốt',5:'Rất tốt'}});}
+  $('.thumbs img').on('click',function(){var src=$(this).data('large');$('#mainImage').attr('src',src).attr('xoriginal',src);$('.thumbs img').removeClass('active');$(this).addClass('active');if($.fn.xzoom){$('#mainImage').xzoom({zoomWidth:300,title:false});}});
+  var count=0;$('#addCart').on('click',function(){count++;$('#cartCount').text('Giỏ hàng: '+count);});
+});
+</script></body></html>

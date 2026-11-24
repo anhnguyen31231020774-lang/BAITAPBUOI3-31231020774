@@ -1,0 +1,50 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Flappy Bird – Kim Anh</title><style>
+body{margin:0;background:#eef5ff;color:#14213d;font:16px/1.5 Arial;text-align:center}.hero{background:#14213d;color:white;padding:25px}.wrap{max-width:760px;margin:auto;padding:20px}.game{background:white;padding:18px;border-radius:16px;box-shadow:0 8px 28px #14213d12}.hud{display:flex;justify-content:space-between;font-weight:bold;font-size:19px;margin:5px auto 12px;max-width:480px}canvas{width:100%;max-width:480px;border:3px solid #1e3a8a;border-radius:12px;background:#bfe9ff}.btn{padding:11px 17px;border:0;border-radius:9px;background:#315fc4;color:white;font-weight:bold;cursor:pointer}.hint{color:#64748b}.win{color:#15803d;font-weight:bold;font-size:22px}
+</style></head><body><header class="hero"><h1>Flappy Bird – Level Challenge</h1><p>Điều khiển bằng phím Arrow Down</p></header><main class="wrap"><p><a href="../../index.html">← Trang chủ bài tập</a></p><section class="game"><div class="hud"><span id="level">Level: 1</span><span id="score">Điểm: 0</span></div><canvas id="game" width="480" height="600"></canvas><p id="message">Nhấn Bắt đầu, sau đó dùng Arrow Down để vỗ cánh.</p><button class="btn" id="start">Bắt đầu / Chơi lại</button><p class="hint">Level 1: 40ms · Level 2: 30ms · Level 3: 25ms · Level 4: 20ms<br>Đạt 50 điểm để chiến thắng.</p></section><section class="game" style="margin-top:16px;text-align:left"><h3>Điều khiển và luật chơi</h3><ul><li>Nhấn Arrow Down để chim bay lên.</li><li>Tránh va chạm ống khói và mép màn hình.</li><li>Mỗi cặp ống khói vượt qua được cộng 1 điểm.</li><li>5 điểm lên Level 2; 20 điểm lên Level 3; 40 điểm lên Level 4.</li><li>Đạt 50 điểm: dừng game và hiển thị chiến thắng.</li></ul></section></main>
+<script>
+const canvas=document.getElementById('game'),ctx=canvas.getContext('2d');
+const birdImg=new Image(),pipeImg=new Image();birdImg.src='assets/bird.svg';pipeImg.src='assets/pipe.svg';
+let bird,pipes,score,level,timer,playing,frame,interval;
+const intervals={1:40,2:30,3:25,4:20};
+function getLevel(s){return s>=40?4:s>=20?3:s>=5?2:1}
+function updateHUD(){document.getElementById('score').textContent='Điểm: '+score;document.getElementById('level').textContent='Level: '+level}
+function draw(){
+ ctx.clearRect(0,0,480,600);
+ const bg=ctx.createLinearGradient(0,0,0,600);bg.addColorStop(0,'#9fe4ff');bg.addColorStop(1,'#f0fbff');ctx.fillStyle=bg;ctx.fillRect(0,0,480,600);
+ // decorative clouds
+ ctx.fillStyle='rgba(255,255,255,.8)';[[70,85],[310,130],[210,45]].forEach(([x,y])=>{ctx.beginPath();ctx.arc(x,y,20,0,7);ctx.arc(x+22,y+5,17,0,7);ctx.fill()});
+ pipes.forEach(p=>{
+   if(pipeImg.complete&&pipeImg.naturalWidth){ctx.save();ctx.translate(p.x,p.top);ctx.drawImage(pipeImg,0,0,64,-p.top);ctx.restore();ctx.save();ctx.translate(p.x,p.top+155);ctx.drawImage(pipeImg,0,0,64,600-(p.top+155));ctx.restore();}
+   else{ctx.fillStyle='#238754';ctx.fillRect(p.x,0,64,p.top);ctx.fillRect(p.x,p.top+155,64,600-p.top-155);}
+ });
+ if(birdImg.complete&&birdImg.naturalWidth){ctx.save();ctx.translate(bird.x,bird.y);ctx.rotate(Math.max(-.35,Math.min(.6,bird.vy*.045)));ctx.drawImage(birdImg,-24,-19,48,38);ctx.restore();}
+ else{ctx.fillStyle='#f7b733';ctx.beginPath();ctx.arc(bird.x,bird.y,18,0,7);ctx.fill();}
+ ctx.fillStyle='#a36b36';ctx.fillRect(0,575,480,25);ctx.fillStyle='#7c4a26';for(let x=0;x<480;x+=35)ctx.fillRect(x,575,17,5);
+}
+function stop(win){
+ playing=false;clearInterval(timer);timer=null;
+ const msg=document.getElementById('message');msg.textContent=win?'🎉 CHIẾN THẮNG! Bạn đã đạt 50 điểm.':'Game Over! Hãy thử lại nhé.';msg.className=win?'win':'';
+}
+function gameTick(){
+ if(!playing)return;frame++;
+ bird.vy+=0.48;bird.y+=bird.vy;
+ if(frame%85===0){const top=100+Math.random()*240;pipes.push({x:500,top,passed:false});}
+ pipes.forEach(p=>{
+   p.x-=3.0+(level-1)*.35;
+   if(!p.passed&&p.x+64<bird.x){p.passed=true;score++;const next=getLevel(score);if(next!==level){level=next;setIntervalForLevel();}updateHUD();if(score>=50){draw();stop(true);}}
+   const hitX=bird.x+15>p.x&&bird.x-15<p.x+64;
+   const hitY=bird.y-14<p.top||bird.y+14>p.top+155;
+   if(hitX&&hitY)stop(false);
+ });
+ pipes=pipes.filter(p=>p.x>-70);
+ if(bird.y<12||bird.y>560)stop(false);
+ draw();
+}
+function setIntervalForLevel(){clearInterval(timer);interval=intervals[level];timer=setInterval(gameTick,interval);document.getElementById('message').textContent='Level '+level+' – Interval '+interval+'ms. Dùng Arrow Down để bay.';}
+function start(){
+ clearInterval(timer);bird={x:115,y:280,vy:0};pipes=[];score=0;level=1;frame=0;playing=true;updateHUD();document.getElementById('message').textContent='Đang chơi – nhấn Arrow Down để vỗ cánh.';document.getElementById('message').className='';draw();setIntervalForLevel();
+}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowDown'&&playing){e.preventDefault();bird.vy=-7.2;}});
+document.getElementById('start').addEventListener('click',start);
+bird={x:115,y:280,vy:0};pipes=[];score=0;level=1;draw();
+</script></body></html>

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Exercise 7.16 – More Transitions</title><style>
+:root{--navy:#14213d;--blue:#315fc4;--ink:#202a3d;--muted:#64748b;--bg:#f3f6fc;--line:#dfe6f1}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 Arial,sans-serif}
+a{color:#2453ad}.hero{padding:38px max(5vw,20px);background:linear-gradient(125deg,#14213d,#315fc4);color:white}
+.hero-inner,main{max-width:1120px;margin:auto}.hero h1{font-size:clamp(30px,5vw,46px);line-height:1.15;margin:8px 0}
+.hero p{max-width:800px}.nav{position:sticky;top:0;z-index:10;background:#fff;padding:11px max(4vw,12px);display:flex;gap:9px;overflow:auto;border-bottom:1px solid var(--line)}
+.nav a,.btn{display:inline-block;background:var(--blue);color:#fff;padding:9px 14px;border:0;border-radius:9px;text-decoration:none;cursor:pointer;white-space:nowrap}
+.nav a{background:#edf2ff;color:#214a9b;font-weight:bold}main{padding:25px 18px 55px}.panel,.exercise-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;margin:15px 0;box-shadow:0 8px 24px #14213d0a}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:14px}.tag{font-size:12px;letter-spacing:.7px;color:#315fc4;font-weight:bold}
+.muted{color:var(--muted)}.demo{background:#f6f8fc;border:1px dashed #b7c4d8;border-radius:11px;padding:14px;min-height:85px;overflow:hidden}
+.footer{text-align:center;padding:25px;color:var(--muted)}.profile{display:flex;gap:18px;align-items:center}.avatar{width:78px;height:78px;display:grid;place-items:center;background:linear-gradient(130deg,#315fc4,#a78bfa);color:white;border-radius:22px;font-size:27px;font-weight:bold;flex:none}
+@media(max-width:600px){.profile{align-items:flex-start;flex-wrap:wrap}.hero{padding-top:30px;padding-bottom:30px}}
+
+.exercise-demo{padding:18px}
+
+.transition-card{display:inline-block;background:#dbeafe;padding:22px;border-radius:5px;transition:background .4s ease,width .4s ease,border-radius .4s ease,transform .4s ease}.transition-card:hover{background:#fda4af;border-radius:24px;transform:rotate(2deg) scale(1.05)}
+</style></head>
+<body><header class="hero"><div class="hero-inner"><div class="tag" style="color:#dbeafe">CSS NÂNG CAO · LAB 07</div><h1>Exercise 7.16 – More Transitions</h1><p>Kết hợp nhiều thuộc tính transition: màu nền, kích thước, bo góc và xoay.</p></div></header>
+<nav class="nav"><a href="../../index.html">Trang chủ CSS-NangCao</a><a href="../index.html">Danh sách Lab 07</a><a href="../Exercise15/index.html">Bài trước</a><a href="../Exercise17/index.html">Bài tiếp</a></nav>
+<main><section class="panel"><span class="tag">MỤC TIÊU</span><h2>More Transitions</h2><p>Kết hợp nhiều thuộc tính transition: màu nền, kích thước, bo góc và xoay.</p><h3>Kết quả thực hành</h3><div class="demo exercise-demo">
+<div class="transition-card">Hover để xem nhiều hiệu ứng cùng lúc</div>
+</div></section>
+<section class="panel"><h3>Giải thích</h3><p>Kết hợp nhiều thuộc tính transition: màu nền, kích thước, bo góc và xoay. Quan sát trực tiếp vùng minh họa để nhận biết cách thuộc tính CSS tác động đến vị trí, kích thước, luồng hiển thị hoặc hiệu ứng của phần tử. Hãy thay đổi kích thước trình duyệt để kiểm tra khả năng thích ứng khi có media query.</p>
+<h3>Mã CSS trọng tâm</h3><pre class="demo"><code>.transition-card{display:inline-block;background:#dbeafe;padding:22px;border-radius:5px;transition:background .4s ease,width .4s ease,border-radius .4s ease,transform .4s ease}.transition-card:hover{background:#fda4af;border-radius:24px;transform:rotate(2deg) scale(1.05)}</code></pre>
+<h3>Câu hỏi tự kiểm tra</h3><ol><li>Thuộc tính hoặc kỹ thuật chính của Exercise này là gì?</li><li>Nếu thay đổi kích thước viewport hoặc giá trị CSS, kết quả sẽ thay đổi như thế nào?</li><li>Kỹ thuật này có thể áp dụng vào phần nào của website thương mại điện tử?</li></ol></section></main><footer class="footer">Nguyễn Hoàng Kim Anh · Exercise 7.16</footer></body></html>
