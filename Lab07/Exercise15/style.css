@@ -1,0 +1,4 @@
+/* Exercise 7.15 – Transitions */
+
+.transition-button{border:0;padding:14px 22px;border-radius:8px;background:#315fc4;color:white;cursor:pointer;transition:background-color .35s ease,transform .35s ease}.transition-button:hover{background:#15966a;transform:translateY(-5px)}
+

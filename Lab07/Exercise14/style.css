@@ -1,0 +1,4 @@
+/* Exercise 7.14 – Transforms */
+
+.transform-row{display:flex;gap:28px;flex-wrap:wrap;padding:20px}.transform-row span{display:inline-block;background:#bfdbfe;padding:15px}.rotate{transform:rotate(-10deg)}.skew{transform:skew(-12deg)}.translate{transform:translateY(12px)}.scale{transform:scale(1.2)}
+

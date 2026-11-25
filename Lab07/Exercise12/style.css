@@ -1,0 +1,4 @@
+/* Exercise 7.12 – Media Queries */
+
+.responsive-box{padding:24px;background:#bfdbfe;border-radius:12px}@media(max-width:600px){.responsive-box{background:#bbf7d0;padding:14px;font-size:14px}}
+

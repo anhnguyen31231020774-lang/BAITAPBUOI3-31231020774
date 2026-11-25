@@ -1,0 +1,4 @@
+/* Exercise 7.11 – Three-Column Layout */
+
+.three-col{position:relative;padding:0 22%}.three-col aside{position:absolute;top:0;width:20%;padding:22px;background:#bfdbfe;min-height:140px}.three-col .left{left:0}.three-col .right{right:0;background:#bbf7d0}.three-col article{background:#fef3c7;padding:22px;min-height:140px}@media(max-width:600px){.three-col{padding:0}.three-col aside{position:static;width:auto;min-height:0;margin-bottom:8px}}
+

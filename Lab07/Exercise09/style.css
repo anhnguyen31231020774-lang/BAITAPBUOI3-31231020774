@@ -1,0 +1,4 @@
+/* Exercise 7.9 – Using Positioning – Caption */
+
+.photo{height:190px;position:relative;border-radius:12px;background:linear-gradient(135deg,#60a5fa,#14532d);overflow:hidden}.caption{position:absolute;bottom:0;left:0;right:0;padding:15px;color:white;background:#14213dcc;font-weight:bold}
+

@@ -1,0 +1,4 @@
+/* Exercise 7.10 – Two-Column Layout */
+
+.two-col{display:flow-root}.two-col aside{float:left;width:28%;padding:18px;background:#bfdbfe;min-height:145px}.two-col article{margin-left:31%;padding:18px;background:#dcfce7;min-height:145px}@media(max-width:560px){.two-col aside{float:none;width:100%;min-height:0}.two-col article{margin:10px 0 0}}
+

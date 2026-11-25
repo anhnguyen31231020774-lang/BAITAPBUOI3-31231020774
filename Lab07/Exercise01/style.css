@@ -1,0 +1,4 @@
+/* Exercise 7.1 – Document Flow – display */
+
+.inline{display:inline;background:#bfdbfe;padding:8px;margin:4px}.block{display:block;background:#bbf7d0;padding:8px;margin:5px 0}.inline-block{display:inline-block;background:#fde68a;padding:10px;margin:5px}
+

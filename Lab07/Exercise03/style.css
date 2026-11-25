@@ -1,0 +1,4 @@
+/* Exercise 7.3 – Absolute Positioning */
+
+.parent{position:relative;height:145px;background:#dbeafe;padding:12px;border:2px solid #60a5fa}.absolute{position:absolute;right:12px;bottom:12px;background:#fda4af;padding:12px;border-radius:8px}
+

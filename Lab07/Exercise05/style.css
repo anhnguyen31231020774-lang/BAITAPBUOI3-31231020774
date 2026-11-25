@@ -1,0 +1,4 @@
+/* Exercise 7.5 – Floating Elements */
+
+.float-left,.float-right{padding:15px;background:#bfdbfe;border-radius:8px;margin:0 12px 8px 0}.float-left{float:left}.float-right{float:right;background:#bbf7d0}
+

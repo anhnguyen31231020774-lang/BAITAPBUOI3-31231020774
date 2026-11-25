@@ -1,0 +1,4 @@
+/* Exercise 7.13 – Setting the Viewport */
+
+.viewport-demo nav{display:flex;gap:8px;flex-wrap:wrap}.viewport-demo a{background:#315fc4;color:white;padding:8px 12px;border-radius:6px;text-decoration:none}@media(max-width:520px){.viewport-demo nav{flex-direction:column}.viewport-demo a{display:block}}
+
